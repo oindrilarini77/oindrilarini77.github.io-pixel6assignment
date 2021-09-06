@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>submit</title>
+    <link rel="stylesheet" href="submit.css">
+</head>
+<body>
+    <div class="container">
+<br><br>
+<div class="msg">
+    Thank you for your inquiry. A 4 digit verification number has been sent to your phone number: 
+
+</div>
+<div>
+    <label for="otp" class="otp">Enter OTP</label>
+    <input type="password" id="otp">
+
+
+</div> 
+<br><br>
+<div>
+    <button onclick=showSubmit() tyoe="button" id="sub" class="submit">Submit</button>
+    <button onclick=showReset() type="button" id="valid" class="val">Reset OTP</button>
+</div>
+   
+</div>
+    <script>
+       valid = Math.floor(1000 + Math.random() * 9000);
+    document.write("your otp:  ", valid);
+ function showReset(){
+     
+    valid = Math.floor(1000 + Math.random() * 9000);
+    document.write("your new otp:  ", valid);
+
+ }
+
+    
+function showSubmit(){
+    
+  	    otp = document.getElementById("otp").value;
+        console.log("otp...."+otp)
+        console.log("valid..."+valid)
+	    if (otp==valid) {
+	 
+	    }
+	else {
+		alert("Incorrect OTP, Click Reset OTP to send new OTP if you haven't recieved it yet")
+        document.getElementById("otp").style.border = "1px solid red";
+        return false;
+    }
+
+
+document.write("VALIDATION SUCCESSFUL!!")
+}
+</script>
+
+
+</body>
+</html>

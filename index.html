@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="index.css">
+
+
+
+       
+</head>
+<body>
+    <p class="top">WELCOME TO PIXEL !!</p>
+
+    <form>
+        <div class="cont">
+            <br>
+
+            <div class="heading">REGISTER</div>
+            <br>
+        <div class="container">
+            <br><br>
+
+        <div>
+            <input type="text" id="fname" class="name" size="80" onchange="validateName()" height="50px" placeholder="Enter Your Full Name">
+            <span id="fullname" class="fullname">
+        </div>
+<br>
+        <div>
+            <input type="email" id="email" class="email" size="80" onchange="validateEmail()" placeholder="Enter your E-mail address">
+            <span id="emails" class="emails">
+        </div>
+<br>
+
+         <div>
+            <input type="tel" id="number" class="number" size="80" onchange="validateMobile(this.value)" placeholder="Enter Your phone number">
+            <p id="stateInfo"></p>
+                
+        </div> 
+ <br><br>
+            <button onclick="displayValues()" type="button" class="valid" id="valid">SUBMIT</button>
+        </div>
+    </div>
+</div>
+
+    </form>
+
+    
+    <script>
+
+        let sProvider, name, email
+        const data = [{stateId:"01",statevalue:"ANDHRA PRADESH"},{stateId:"02",statevalue:"ARUNACHAL PRADESH"},
+                {stateId:"03",statevalue:"ASSAM"},{stateId:"04",statevalue:"BIHAR"},{stateId:"5",statevalue:"CHHATISGARH"},
+                {stateId:"6",statevalue:"GOA"},{stateId:"7",statevalue:"GUJRAT"},{stateId:"8",statevalue:"HARYANA"},
+                {stateId:"9",statevalue:"HIMACHAL PRADESH"}, {stateId:"10",statevalue:"JHARKHAND"},{stateId:"11",statevalue:"KARNATAKA"},
+                {stateId:"12", statevalue:"KERELA"},{stateId:"13", statevalue:"MADHYA PRADESH"},{stateId:"14", statevalue:"MAHARASHTRA"},
+                {stateId:"15", statevalue:"MANIPUR"},{stateId:"16",statevalue:"MEGHALAYA"},{stateId:"17",statevalue:"MIZORAM"},{stateId:"18", statevalue:"NAGALAND"},
+                ,{stateId:"19",statevalue:"ODISHA"},{stateId:"20",statevalue:"PUNJAB"},{stateId:"21",statevalue:"RAJASTHAN"},
+                ,{stateId:"22",statevalue:"SIKKIM"},{stateId:"23",statevalue:"TAMIL NADU"},{stateId:"24",statevalue:"TELENGANA"}
+                ,{stateId:"25",statevalue:"TRIPURA"},{stateId:"26",statevalue:"UTTAR PRADESH"},{stateId:"27",statevalue:"UTTARKHAND"}
+                ,{stateId:"28",statevalue:"WEST BENGAL"},{stateId:"29",statevalue:"ANDAMAN & NICOBAR"},{stateId:"30",statevalue:"CHANDIGARH"}
+                ,{stateId:"31",statevalue:"Dadra Nagar"},{stateId:"32",statevalue:"DELHI"},{stateId:"33",statevalue:"JAMMU & KASHMIR"}
+                ,{stateId:"34",statevalue:"LADAKH"},{stateId:"35",statevalue:"LAKSHADEEP"},{stateId:"36",statevalue:"PUDUCHERRY"}]
+        
+
+                function validateName(){
+                    name = document.getElementById("fname").value
+                    console.log(name)
+                    if(name ==''){
+                        document.getElementById('fullname').innerHTML="**Please Enter your Full Name";
+                        return false;
+                    }else{
+                        document.getElementById('fullname').innerHTML="";
+                        return false;
+                    }
+                    
+                }
+
+                function validateEmail(){
+                    email = document.getElementById("email").value
+                    if( email == ''){
+                        document.getElementById('emails').innerHTML="**Please Enter your Email id";
+                        return false;
+                    }
+                    else{
+                        document.getElementById('emails').innerHTML="";
+                        return false;
+                    }
+                }
+
+                function displayValues() {
+                    console.log("text")
+                   
+                   validateName()
+
+                   validateEmail()
+
+                    let number = document.getElementById("number").value;
+                    let mobRegex=/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+                    let check=number.match(mobRegex)
+                    console.log(check)
+
+                    if(number==''){
+                        document.getElementById('stateInfo').innerHTML="**Please Enter 10 digit Mobile number";
+                        return false;
+                    }
+                    
+                    else if(check)
+                    {
+                        window.location.href="file:///C:/Users/wow/Desktop/assignmentpixel6/submit.html"
+                        return false;
+                    }
+                    console.log(number.substring(0,3))
+                    console.log(sProvider);
+                    
+                    
+                   
+                }
+        
+        
+                function validateMobile(mobileNumber){
+                    let threeDigits=mobileNumber.substring(0,3)
+                    sProvider=checkServiceProvider(threeDigits)
+                    let countryCode=mobileNumber.substring(3,5)
+                    console.log(countryCode)
+        
+                    data.map((state)=>{
+                        if(state.stateId===countryCode){
+                            document.getElementById("stateInfo").innerHTML=sProvider+"-"+state.statevalue
+                        }
+                    })
+                }
+        
+        
+                function between(x, min, max) {
+                         return x >= min && x <= max;
+                    }
+        
+                function checkServiceProvider(threeDigits){
+                     if(between(threeDigits,621,799)){
+                        return "JIO"
+                         
+                     }
+                     if(between(threeDigits,801,920)){
+                        return "IDEA"
+                     }
+                     if(between(threeDigits,921,999)){
+                        return "VODAFONE"
+                     }
+                     return "Invalid"
+                     
+                   
+                    }
+                    
+                    
+                    
+        
+            </script>
+        </body>
+        </html>
+
